@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CustomerListComponent } from './customer/customer-list.component';
-import {PaginationModule} from 'ng2-bs-pagination';
+import { PaginationModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -21,7 +21,7 @@ import { CustomerResolve } from './customer/customer-resolve';
   imports: [
     BrowserModule,
     CommonModule,
-    PaginationModule,
+    PaginationModule.forRoot(),
     TextMaskModule,
     HttpClientModule,
     FormsModule,
