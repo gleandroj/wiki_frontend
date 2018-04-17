@@ -58,7 +58,6 @@ export class CustomerFormComponent {
     }
 
     onSubimit(event) {
-        console.log(this.customerForm.value);
         if (this.customer.id) {
             this.customerService.updateCustomer(this.customer.id, this.customerForm.value).subscribe(c => {
                 this.router.navigate(['customers']);
