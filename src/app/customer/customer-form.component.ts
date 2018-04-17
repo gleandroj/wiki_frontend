@@ -16,16 +16,28 @@ export class CustomerFormComponent {
     title: string = 'Formulário';
     customer: Customer;
     readonly: boolean = false;
+    mask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+    cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+    rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
 
     ngOnInit(): void {
-        this.readonly = this.activatedRoute.snapshot.data['readonly'];
-        this.title = this.activatedRoute.snapshot.data['title'];
-        this.customer = this.activatedRoute.snapshot.data['customer'];
+        this.activatedRoute
+            .data
+            .subscribe(v => {
+                this.title = v.title;
+                this.readonly = v.readonly || false;
+            });
+
+        this.customer = this.activatedRoute.snapshot.data['customer'] || {};
+
+        console.log(this.customer);
 
         this.customerForm = new FormGroup({
-            'nome': new FormControl(this.customer.nome, [
-                Validators.required
-            ])
+            'nome': new FormControl(this.customer.nome, Validators.compose([Validators.required])),
+            'rg': new FormControl(this.customer.rg, Validators.compose([Validators.required])),
+            'cpf': new FormControl(this.customer.cpf, Validators.compose([Validators.required])),
+            'telefone': new FormControl(this.customer.telefone, Validators.compose([Validators.required])),
+            'dt_nascimento': new FormControl(this.customer.dt_nascimento, Validators.compose([Validators.required]))
         });
     }
 

@@ -1,4 +1,4 @@
-<form formGroup="customerForm">
+<form [formGroup]="customerForm" (ngSubmit)="onSubimit()">
     <div class="row">
         <div class=" col-lg-9">
             <h2>Cadastrar</h2>                
@@ -13,19 +13,19 @@
     
     <div class="form-group col-md-4">
       <label for="rg">RG</label>
-      <input  type="text" class="rg form-control" id="rg" formControlName="rg" [disabled]="readonly" name="rg">
+      <input  type="text" [textMask]="{mask: rgMask}" class="rg form-control" id="rg" formControlName="rg" [disabled]="readonly" name="rg">
     </div>
     
     <div class="form-group col-md-4">
       <label for="cpf">CPF</label>
-      <input  type="text" class="cpf form-control" id="cpf" formControlName="cpf" [disabled]="readonly" name="cpf">
+      <input  type="text" [textMask]="{mask: cpfMask}" class="cpf form-control" id="cpf" formControlName="cpf" [disabled]="readonly" name="cpf">
     </div>
     </div>
   
     <div class="row">
     <div class="form-group col-md-4">
       <label for="telefone">Telefone</label>
-      <input  type="text" class="phone_with_ddd form-control" id="telefone" formControlName="telefone" [disabled]="readonly" name="telefone">
+      <input  type="text" [textMask]="{mask: mask}" class="phone_with_ddd form-control" id="telefone" formControlName="telefone" [disabled]="readonly" name="telefone">
     </div>
     
     <div class="form-group col-md-4">
@@ -35,7 +35,7 @@
     
     <div class="col-md-12">
           <button [hidden]="readonly" class="btn btn-primary" type="submit">Salvar</button>
-          <a class="btn btn-default">{{ readonly ? 'Voltar' : 'Cancelar' }}</a>
+          <a [routerLink]="['/customers']" class="btn btn-default">Voltar</a>
         </div>
     </div>
   </form>

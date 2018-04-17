@@ -3,7 +3,7 @@
         Clientes
     </div>
 
-    <a [routerLink]="['customers', 'cadastrar']" class="btn btn-success pull-right">Novo</a>
+    <a [routerLink]="['/customers', 'cadastrar']" class="btn btn-success pull-right">Novo</a>
 </div>
 <br/>
 <table class="table table-responsive ">
@@ -21,7 +21,7 @@
     <tbody>
         <tr *ngFor="let customer of paginator.data">
             <td>
-                <a [routerLink]="['customers', customer.id]">{{customer.id}}</a>
+                <a [routerLink]="['/customers', customer.id]">{{customer.id}}</a>
             </td>
             <td>{{customer.nome}}</td>
             <td>{{customer.rg}}</td>
@@ -29,7 +29,7 @@
             <td>{{customer.dt_nascimento | date:'medium'}}</td>
             <td>{{customer.telefone}}</td>
             <td style="display: flex; flex-direction: row; justify-content: space-between;">
-                <a [routerLink]="['customers', customer.id, 'editar']" style="margin-right: 4px;" class="btn btn-primary">Editar</a>
+                <a [routerLink]="['/customers', customer.id, 'editar']" style="margin-right: 4px;" class="btn btn-primary">Editar</a>
                 <a (click)="deletar(customer)" class="btn btn-secondary">Deletar</a>
             </td>
         </tr>
@@ -38,5 +38,5 @@
 </table>
 <div class="row">
     <!--Paginator-->
-    <pagination [totalItems]="paginator.total" [(ngModel)]="paginator.current_page" [itemsPerPage]="10" (pageChanged)="pageChanged($event)"></pagination>
+    <ng-pagination [totalItems]="paginator.total" [itemsPerPage]="perPage" (pageChange)="pageChanged($event)"></ng-pagination>
 </div>

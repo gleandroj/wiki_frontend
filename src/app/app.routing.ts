@@ -7,9 +7,9 @@ import { CustomerResolve } from './customer/customer-resolve';
 const routes: Routes = [
     { path: '', redirectTo: 'customers', pathMatch: 'full' },
     { path: 'customers', component: CustomerListComponent },
-    { path: 'customers/cadastrar', component: CustomerFormComponent,  resolve: {title: 'Cadastrar', customer: null, readonly: false} },
-    { path: 'customers/:id', component: CustomerFormComponent, resolve: {title: 'Visualizar', customer: CustomerResolve, readonly: true} },
-    { path: 'customers/:id/editar', component: CustomerFormComponent, resolve: {title: 'Editar', customer: CustomerResolve, readonly: false} },
+    { path: 'customers/cadastrar', component: CustomerFormComponent, data: { title: 'Cadastrar', readonly: false } },
+    { path: 'customers/:id', component: CustomerFormComponent, data: { title: 'Visualizar', readonly: true }, resolve: { customer: CustomerResolve } },
+    { path: 'customers/:id/editar', component: CustomerFormComponent, data: { title: 'Editar', readonly: false }, resolve: { customer: CustomerResolve } },
 ];
 
 @NgModule({

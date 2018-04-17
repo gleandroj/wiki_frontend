@@ -9,8 +9,8 @@ import { environment } from '../../environments/environment';
 export class CustomerService {
   constructor(private http: HttpClient) { }
 
-  getCustomers(page: any): Observable<Paginator<Customer>>{
-    return this.http.get<Paginator<Customer>>(`${environment.baseURL}/customers`);
+  getCustomers(page: any, perPage: any): Observable<Paginator<Customer>>{
+    return this.http.get<Paginator<Customer>>(`${environment.baseURL}/customers/paginate?page=${page}&perPage=${perPage}`);
   }
 
   getCustomer(id: any): Observable<Customer>{
