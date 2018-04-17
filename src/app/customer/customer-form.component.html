@@ -1,9 +1,15 @@
+<br/>
 <form [formGroup]="customerForm" (ngSubmit)="onSubimit($event)">
     <div class="row">
         <div class=" col-lg-9">
             <h2>Cadastrar</h2>                
         </div>
     </div>
+
+    <div *ngFor="let alert of errors">
+      <alert type="danger" [dismissible]="true">{{ alert }}</alert>
+    </div>
+
     <br/>
     <div class="row">
     <div class="form-group col-md-4">

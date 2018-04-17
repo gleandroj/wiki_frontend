@@ -4,6 +4,7 @@ import { Customer } from './customer';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'customer-form',
@@ -13,6 +14,7 @@ export class CustomerFormComponent {
 
     constructor(private customerService: CustomerService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
+    errors: any = [];
     customerForm: FormGroup;
     title: string = 'Formulário';
     customer: Customer;
@@ -57,15 +59,21 @@ export class CustomerFormComponent {
         });
     }
 
+    onError(err: HttpErrorResponse){
+        if(err.status == 422){
+            this.errors = Object.keys(err.error.errors).map(function (key) { return err.error.errors[key][0]; });
+        }
+    }
+
     onSubimit(event) {
         if (this.customer.id) {
             this.customerService.updateCustomer(this.customer.id, this.customerForm.value).subscribe(c => {
                 this.router.navigate(['customers']);
-            });
+            }, (err) => this.onError(err));
         } else {
             this.customerService.createCustomer(this.customerForm.value).subscribe(c => {
                 this.router.navigate(['customers']);
-            });
+            }, (err) => this.onError(err));
         }
     }
 }
