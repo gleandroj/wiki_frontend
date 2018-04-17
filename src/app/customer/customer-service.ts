@@ -17,11 +17,11 @@ export class CustomerService {
     return this.http.get<Customer>(`${environment.baseURL}/customers/${id}`);
   }
 
-  updateCustomer(customer: Customer): Observable<Customer>{
-    return this.http.put<Customer>(`${environment.baseURL}/customers/${customer.id}`, customer);
+  updateCustomer(id: any, data: any): Observable<Customer>{
+    return this.http.put<Customer>(`${environment.baseURL}/customers/${id}`, data);
   }
 
-  createCustomer(customer: Customer): Observable<Customer>{
+  createCustomer(customer: any): Observable<Customer>{
     return this.http.post<Customer>(`${environment.baseURL}/customers`, customer);
   }
 

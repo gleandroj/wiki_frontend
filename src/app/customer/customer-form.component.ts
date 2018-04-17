@@ -35,21 +35,36 @@ export class CustomerFormComponent {
         this.customer.dt_nascimento = datePipe.transform(this.customer.dt_nascimento, 'dd/MM/yyyy');
 
         this.customerForm = new FormGroup({
-            'nome': new FormControl(this.customer.nome, Validators.compose([Validators.required])),
-            'rg': new FormControl(this.customer.rg, Validators.compose([Validators.required])),
-            'cpf': new FormControl(this.customer.cpf, Validators.compose([Validators.required])),
-            'telefone': new FormControl(this.customer.telefone, Validators.compose([Validators.required])),
-            'dt_nascimento': new FormControl(this.customer.dt_nascimento, Validators.compose([Validators.required]))
+            'nome': new FormControl(this.customer.nome, Validators.compose([
+                Validators.required
+            ])),
+            'rg': new FormControl(this.customer.rg, Validators.compose([
+                Validators.required,
+                Validators.pattern(/[0-9]{6}/)
+            ])),
+            'cpf': new FormControl(this.customer.cpf, Validators.compose([
+                Validators.required,
+                Validators.pattern(/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/)
+            ])),
+            'telefone': new FormControl(this.customer.telefone, Validators.compose([
+                Validators.required,
+                Validators.pattern(/\([0-9]{2}\) [0-9]{4}\-[0-9]{4}/)
+            ])),
+            'dt_nascimento': new FormControl(this.customer.dt_nascimento, Validators.compose([
+                Validators.required,
+                Validators.pattern(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+            ]))
         });
     }
 
-    onSubimit() {
+    onSubimit(event) {
+        console.log(this.customerForm.value);
         if (this.customer.id) {
-            this.customerService.updateCustomer(this.customer).subscribe(c => {
+            this.customerService.updateCustomer(this.customer.id, this.customerForm.value).subscribe(c => {
                 this.router.navigate(['customers']);
             });
         } else {
-            this.customerService.createCustomer(this.customer).subscribe(c => {
+            this.customerService.createCustomer(this.customerForm.value).subscribe(c => {
                 this.router.navigate(['customers']);
             });
         }
