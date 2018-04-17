@@ -3,6 +3,7 @@ import { CustomerService } from './customer-service';
 import { Customer } from './customer';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'customer-form',
@@ -19,6 +20,7 @@ export class CustomerFormComponent {
     mask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
     cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
     rgMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+    dateMask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
     ngOnInit(): void {
         this.activatedRoute
@@ -28,9 +30,9 @@ export class CustomerFormComponent {
                 this.readonly = v.readonly || false;
             });
 
-        this.customer = this.activatedRoute.snapshot.data['customer'] || {};
-
-        console.log(this.customer);
+        this.customer = (this.activatedRoute.snapshot.data['customer'] as Customer) || {};
+        var datePipe = new DatePipe('en');
+        this.customer.dt_nascimento = datePipe.transform(this.customer.dt_nascimento, 'dd/MM/yyyy');
 
         this.customerForm = new FormGroup({
             'nome': new FormControl(this.customer.nome, Validators.compose([Validators.required])),

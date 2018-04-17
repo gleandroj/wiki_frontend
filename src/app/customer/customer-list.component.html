@@ -26,7 +26,7 @@
             <td>{{customer.nome}}</td>
             <td>{{customer.rg}}</td>
             <td>{{customer.cpf}}</td>
-            <td>{{customer.dt_nascimento | date:'medium'}}</td>
+            <td>{{customer.dt_nascimento | date: 'dd/MM/yyyy'}}</td>
             <td>{{customer.telefone}}</td>
             <td style="display: flex; flex-direction: row; justify-content: space-between;">
                 <a [routerLink]="['/customers', customer.id, 'editar']" style="margin-right: 4px;" class="btn btn-primary">Editar</a>
