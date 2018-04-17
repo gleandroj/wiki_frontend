@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertComponent } from 'ngx-bootstrap';
 
 @Component({
     selector: 'customer-form',
@@ -57,6 +58,10 @@ export class CustomerFormComponent {
                 Validators.pattern(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
             ]))
         });
+    }
+
+    onClosed(dismissedAlert: AlertComponent): void {
+        this.errors = this.errors.filter(alert => alert !== dismissedAlert);
     }
 
     onError(err: HttpErrorResponse){

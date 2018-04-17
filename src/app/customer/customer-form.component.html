@@ -7,7 +7,7 @@
     </div>
 
     <div *ngFor="let alert of errors">
-      <alert type="danger" [dismissible]="true">{{ alert }}</alert>
+      <alert type="danger" (onClosed)="onClosed(alert)" [dismissible]="true">{{ alert }}</alert>
     </div>
 
     <br/>
