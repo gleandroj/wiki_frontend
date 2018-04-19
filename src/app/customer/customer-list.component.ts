@@ -27,4 +27,16 @@ export class CustomerListComponent {
     });
   }
 
+  refresh(){
+    this.customerService.getCustomers(this.paginator.current_page).subscribe((p) => {
+      this.paginator = p;
+    });
+  }
+
+  deletar(c: Customer){
+    this.customerService.deleteCustomer(c.id).subscribe((c) => {
+      this.refresh();
+    })
+  }
+
 }

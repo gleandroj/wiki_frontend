@@ -19,16 +19,16 @@
     <tbody>
         <tr *ngFor="let customer of paginator.data">
             <td>
-                <a>{{customer.id}}</a>
+                <a [routerLink]="['customers', customer.id]">{{customer.id}}</a>
             </td>
             <td>{{customer.nome}}</td>
             <td>{{customer.rg}}</td>
             <td>{{customer.cpf}}</td>
-            <td>{{customer.dt_nascimento}}</td>
+            <td>{{customer.dt_nascimento | date:'medium'}}</td>
             <td>{{customer.telefone}}</td>
             <td style="display: flex; flex-direction: row; justify-content: space-between;">
-                <a style="margin-right: 4px;" class="btn btn-primary">Editar</a>
-                <a class="btn btn-secondary">Deletar</button>
+                <a [routerLink]="['customers', customer.id, 'editar']" style="margin-right: 4px;" class="btn btn-primary">Editar</a>
+                <a (click)="deletar(customer)" class="btn btn-secondary">Deletar</button>
             </td>
         </tr>
         
