@@ -12,7 +12,7 @@ export class CustomerFormComponent {
 
     constructor(private customerService: CustomerService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-    customerForm: any;
+    customerForm: FormGroup;
     title: string = 'Formulário';
     customer: Customer;
     readonly: boolean = false;
