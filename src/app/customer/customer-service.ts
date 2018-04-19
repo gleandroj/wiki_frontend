@@ -9,11 +9,11 @@ import { environment } from '../../environments/environment';
 export class CustomerService {
   constructor(private http: HttpClient) { }
 
-  getCustomers(page: number): Observable<Paginator<Customer>>{
+  getCustomers(page: any): Observable<Paginator<Customer>>{
     return this.http.get<Paginator<Customer>>(`${environment.baseURL}/customers`);
   }
 
-  getCustomer(id: number): Observable<Customer>{
+  getCustomer(id: any): Observable<Customer>{
     return this.http.get<Customer>(`${environment.baseURL}/customers/${id}`);
   }
 
@@ -25,7 +25,7 @@ export class CustomerService {
     return this.http.post<Customer>(`${environment.baseURL}/customers`, customer);
   }
 
-  deleteCustomer(id: number): Observable<Customer>{
+  deleteCustomer(id: any): Observable<Customer>{
     return this.http.delete<Customer>(`${environment.baseURL}/customers/${id}`);
   }
 }
