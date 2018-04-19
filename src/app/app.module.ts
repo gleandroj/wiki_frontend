@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CustomerListComponent } from './customer/customer-list.component';
 import { PaginationModule } from 'ngx-bootstrap';
+import { FormsModule }   from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -12,8 +14,10 @@ import { PaginationModule } from 'ngx-bootstrap';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     PaginationModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
