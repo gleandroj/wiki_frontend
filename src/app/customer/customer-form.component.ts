@@ -6,7 +6,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 
 @Component({
     selector: 'customer-form',
-    templateUrl: './customer.component.html'
+    templateUrl: './customer-form.component.html'
 })
 export class CustomerFormComponent {
 

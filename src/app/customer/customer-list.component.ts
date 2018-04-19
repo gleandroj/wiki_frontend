@@ -6,7 +6,7 @@ import { Customer } from './customer';
 
 @Component({
   selector: 'customer-list',
-  templateUrl: './customer.component.html'
+  templateUrl: './customer-list.component.html'
 })
 export class CustomerListComponent {
 
