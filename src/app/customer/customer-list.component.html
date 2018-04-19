@@ -30,7 +30,7 @@
             <td>{{customer.telefone}}</td>
             <td style="display: flex; flex-direction: row; justify-content: space-between;">
                 <a [routerLink]="['customers', customer.id, 'editar']" style="margin-right: 4px;" class="btn btn-primary">Editar</a>
-                <a (click)="deletar(customer)" class="btn btn-secondary">Deletar</button>
+                <a (click)="deletar(customer)" class="btn btn-secondary">Deletar</a>
             </td>
         </tr>
 
