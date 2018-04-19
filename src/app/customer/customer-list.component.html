@@ -2,6 +2,8 @@
     <div class=" col-lg-10">
         Clientes
     </div>
+
+    <a [routerLink]="['customers', 'cadastrar']" class="btn btn-success pull-right">Novo</a>
 </div>
 <br/>
 <table class="table table-responsive ">
@@ -31,7 +33,7 @@
                 <a (click)="deletar(customer)" class="btn btn-secondary">Deletar</button>
             </td>
         </tr>
-        
+
         <tbody>
 </table>
 <div class="row">

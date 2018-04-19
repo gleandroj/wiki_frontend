@@ -6,20 +6,25 @@ import { CustomerListComponent } from './customer/customer-list.component';
 import { PaginationModule } from 'ngx-bootstrap';
 import { FormsModule }   from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app.routing';
+import { CustomerFormComponent } from './customer/customer-form.component';
+import { CustomerService } from './customer/customer-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     PaginationModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
